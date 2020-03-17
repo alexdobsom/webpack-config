@@ -22,9 +22,9 @@ const path = require("path");
 
 module.exports = {
   //define entry point
-  entry: "index.js",
-  mode: "development",
-  // mode: "production",
+  entry: "./index.js",
+  // mode: "development",
+  mode: "production",
 
   //define output point
   output: {
@@ -33,20 +33,23 @@ module.exports = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /(node_modules)/,
-        loader: "babel-loader",
-        query: {
-          presets: ["es2015"]
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"]
+          }
         }
       },
       {
         test: /\.scss$/,
-        loader: "style-loader!css-loader!sass-loader"
+        use: "style-loader!css-loader!sass-loader"
       }
     ] //loaders
   } //module
 };
+
 ```
